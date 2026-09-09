@@ -1,13 +1,6 @@
 window.ReleaseOps.register("rockstar-lifestyle", "pr", {
   title: "Press & PR outreach",
   intro: "Publicist outreach for the launch window, run by Hunter on behalf of Fusion 305 (the label). Firms are ranked by how close they sit to the story: hip-hop, culture, and the Roc Nation / CMG / Future orbit. A firm is <b>Completed</b> only when a reply has been logged; a submission is one checkpoint, not an engagement. Contact channels are the ones each firm publishes itself, read 9 September 2026.",
-  rules: [
-    "One follow-up the day after a submission. It adds one new fact; it never repeats the pitch.",
-    "Send every touch during the firm's workday: 10am to 1pm Eastern.",
-    "After the day-after nudge, wait a full week before the next touch. Two messages in two days is a nudge; three in a week is a problem.",
-    "Every message carries the same identity claim for the artist. A publicist verifies the family link before any pitch, so the form, the DM and the call must agree.",
-    "Never pay for guaranteed placements. That is a different product from publicity and it does not move editors, radio or culture press."
-  ],
   tracker: [
     { firm: "Vital Versatility", site: "https://www.vitalversatility.com", lead: "Didier Morais · New York", tier: "Lead", fit: "Megan Thee Stallion, Fat Joe, Yo Gotti / CMG, Roc Nation, PUMA. Hip-hop, culture and crisis PR; the CMG and Roc Nation orbit the story lands in.",
       links: [

@@ -153,14 +153,13 @@
   }
   function renderPR() {
     const p = D.pr; const items = allItems({ pr: p }); const c = counts(items);
-    const rules = `<h4>Outreach rules</h4><ul class="sm" style="margin:0;padding-left:18px">${p.rules.map(r => `<li style="margin-bottom:5px">${r}</li>`).join("")}</ul>`;
     const linkList = ls => (ls || []).map(l => `<a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join(`<span class="faint"> · </span>`);
     const tracker = `<h4>Firm tracker — ranked by fit</h4><p class="sm" style="margin:0 0 6px">Lead = the firm already approached. Tier 1 = inside the Future / Roc Nation / CMG orbit. Tier 2 = deepest street-rap rosters and the realistic doors for a debut single. Tier 3 = weaker genre fit. Every channel is a link; emails open a draft, phone numbers dial.</p>
       ${table(["Firm", "Tier", "Why it matches", "Channels", "Status", "Last touch", "Next touch"], p.tracker.map(f => [`<b>${f.site ? `<a href="${esc(f.site)}" target="_blank" rel="noopener">${esc(f.firm)}</a>` : esc(f.firm)}</b><div class="sm">${esc(f.lead)}</div>`, esc(f.tier), `<span class="sm">${esc(f.fit)}</span>`, `<span class="sm links">${linkList(f.links)}</span>`, st(f.status), f.last ? `<span class="due ${dueClass(f.last)}">${fmt(f.last)}</span>${f.lastNote ? `<div class="sm">${esc(f.lastNote)}</div>` : ""}` : blank(null), f.next ? `<span class="due ${dueClass(f.next)}">${fmt(f.next)}</span>${f.nextNote ? `<div class="sm">${esc(f.nextNote)}</div>` : ""}` : (f.nextNote ? `<span class="sm">${esc(f.nextNote)}</span>` : blank(null))]))}`;
     const cl = c2 => c2 ? `<a href="${esc(c2)}" target="_blank" rel="noopener">${esc(c2.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, ""))}</a>` : blank(null);
     const contacts = p.contacts && p.contacts.length ? `<h4>Contact list — people</h4>${table(["Name", "Firm", "Role", "Email", "Phone", "Instagram", "X", "LinkedIn", "Other"], p.contacts.map(k => [`<b>${esc(k.name)}</b>`, esc(k.firm), esc(k.role), k.email ? `<a href="mailto:${esc(k.email)}">${esc(k.email)}</a>` : blank(null), k.phone ? `<a href="tel:${esc(k.phone.replace(/[^+\d]/g, ""))}">${esc(k.phone)}</a>` : blank(null), cl(k.ig), cl(k.x), cl(k.li), k.other ? link(k.other) : blank(null)]))}` : "";
     const srcs = p.sources && p.sources.length ? `<h4>Sources</h4><ul class="sm" style="margin:0;padding-left:18px">${p.sources.map(s => `<li style="margin-bottom:4px">${link(s)}</li>`).join("")}</ul>` : "";
-    $("#pr").innerHTML = sectionHead(p.title, p.intro, c) + rules + tracker + contacts + groupsHTML(p.groups) + (p.budgetNote ? `<div class="note warn">${p.budgetNote}</div>` : "") + srcs;
+    $("#pr").innerHTML = sectionHead(p.title, p.intro, c) + tracker + contacts + groupsHTML(p.groups) + (p.budgetNote ? `<div class="note warn">${p.budgetNote}</div>` : "") + srcs;
   }
   function renderQA() {
     const q = D.qa; const items = allItems({ qa: q }); const c = counts(items);
