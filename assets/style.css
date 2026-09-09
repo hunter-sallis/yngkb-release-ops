@@ -140,6 +140,7 @@ td.v{color:var(--sub)} td.v.set{color:var(--ink)} td.blank{color:var(--faint);fo
 .metric .mv{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px}
 .metric .mv div{font:500 20px/1 "Cormorant Garamond",Georgia,serif;font-variant-numeric:tabular-nums} .metric .mv div.blank{color:#c8cbd0}
 .metric .mv small{display:block;font:700 8.5px/1.4 "Manrope",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:3px}
+.links a{white-space:nowrap} td .links{line-height:1.9}
 .pitchtext{white-space:pre-wrap;font-size:13.5px;line-height:1.6;background:#fff;border:1px solid var(--line);border-radius:6px;padding:16px;margin-top:10px}
 .pitchtext.blank{color:var(--faint);font-style:italic}
 .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}

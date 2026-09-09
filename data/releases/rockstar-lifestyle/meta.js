@@ -1,5 +1,5 @@
 window.ReleaseOps.register("rockstar-lifestyle", "meta", {
-  version: 2, asOf: "2026-09-09", operator: "Keyman",
+  version: 3, asOf: "2026-09-09", operator: "Keyman",
   artist: "YNG KB", title: "Rockstar Lifestyle", slug: "rockstar-lifestyle",
   distributor: "DistroKid", plan: "Musician Plus",
   releaseDate: "2026-10-02", releaseDateNote: "proposed Friday; not yet confirmed by the artist or set in DistroKid",
