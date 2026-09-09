@@ -33,8 +33,8 @@
     (d.marketing && d.marketing.phases || []).forEach(p => (p.tasks || []).forEach(t => out.push({ id: t.id, label: t.task, status: t.status, owner: t.owner, due: t.date, deps: t.deps, section: "marketing", group: p.title })));
     grab(d.pitch && d.pitch.groups, "pitch");
     grab(d.qa && d.qa.groups, "qa");
-    (d.post && d.post.days || []).forEach(p => (p.tasks || []).forEach(t => out.push({ id: t.id, label: t.t, status: t.status, owner: t.owner, due: p.date, section: "royalties_post", group: p.title })));
-    (d.royalties && d.royalties.rows || []).forEach(r => out.push({ id: r.id, label: r.system + " — " + r.what, status: r.status, owner: r.owner, due: r.followUp, section: "royalties", group: "Royalty verification", lens: r.lens }));
+    (d.post && d.post.days || []).forEach(p => (p.tasks || []).forEach(t => { if (t.refs) return; out.push({ id: t.id, label: t.t, status: t.status, owner: t.owner, due: p.date, section: "royalties_post", group: p.title }); }));
+    (d.royalties && d.royalties.rows || []).forEach(r => out.push({ id: r.id, label: r.system, status: r.status, owner: r.owner, due: r.followUp, section: "royalties", group: "Royalty verification", lens: r.lens }));
     return out;
   }
   function counts(items) {
@@ -139,7 +139,7 @@
   function renderMarketing() {
     const m = D.marketing; const items = allItems({ marketing: m }); const c = counts(items);
     const phases = m.phases.map(p => `<div class="phase"><h3>${esc(p.title)} <span class="due">${fmt(p.from)} → ${fmt(p.to)}</span></h3>${p.intro ? `<p class="sm" style="margin:0">${p.intro}</p>` : ""}
-      ${table(["Date", "Task", "Owner", "Platform", "Status", "Asset", "CTA"], p.tasks.map(t => { const w = depState({ deps: t.deps }).filter(x => !x.ok); return [`<span class="due ${dueClass(t.date)}">${fmt(t.date)}</span>`, `<b>${esc(t.task)}</b>${t.detail ? `<div class="sm">${t.detail}</div>` : ""}${w.length ? `<div class="deps" style="margin-top:6px">${w.map(x => `<span class="dep wait">${esc(x.label)}</span>`).join("")}</div>` : ""}`, `<span class="owner">${esc(t.owner)}</span>`, esc(t.platform), st(t.status), blank(t.asset), blank(t.cta)]; }))}</div>`).join("");
+      ${table(["Date", "Task", "Owner", "Platform", "Status", "Asset", "CTA"], [...p.tasks].sort((x, y) => pd(x.date) - pd(y.date)).map(t => { const w = depState({ deps: t.deps }).filter(x => !x.ok); return [`<span class="due ${dueClass(t.date)}">${fmt(t.date)}</span>`, `<b>${esc(t.task)}</b>${t.detail ? `<div class="sm">${t.detail}</div>` : ""}${w.length ? `<div class="deps" style="margin-top:6px">${w.map(x => `<span class="dep wait">${esc(x.label)}</span>`).join("")}</div>` : ""}`, `<span class="owner">${esc(t.owner)}</span>`, esc(t.platform), st(t.status), blank(t.asset), blank(t.cta)]; }))}</div>`).join("");
     $("#marketing").innerHTML = sectionHead(m.title, m.intro, c) + phases + (m.note ? `<div class="note">${m.note}</div>` : "");
   }
   function renderPitch() {
@@ -153,14 +153,14 @@
   function renderQA() {
     const q = D.qa; const items = allItems({ qa: q }); const c = counts(items);
     const matrix = `<h4>Release-day verification matrix</h4><p class="sm" style="margin:0 0 6px">One cell per platform and check. Grey = not yet checked (release day has not happened). Fill from the actual store listing on ${fmt(D.meta.releaseDate)}.</p>
-      <div class="tblwrap"><table class="matrix"><thead><tr><th>Check</th>${q.platforms.map(pf => `<th>${esc(pf)}</th>`).join("")}</tr></thead><tbody>
+      <div class="tblwrap mx"><table class="matrix"><thead><tr><th>Check</th>${q.platforms.map(pf => `<th>${esc(pf)}</th>`).join("")}</tr></thead><tbody>
       ${q.checks.map(ch => `<tr><td>${esc(ch)}</td>${q.platforms.map(pf => { const s = (q.matrix[pf] || {})[ch] || "unknown"; return `<td><span class="cell ${s}" title="${esc(pf)} · ${esc(ch)} · ${STATUS_LABEL[s]}"></span></td>`; }).join("")}</tr>`).join("")}</tbody></table></div>`;
     const issues = `<h4>Issue log</h4>${q.issues.length ? table(["Date", "Platform", "Issue", "Resolution", "Status"], q.issues.map(i => [fmt(i.date), esc(i.platform), esc(i.issue), blank(i.resolution), st(i.status)])) : `<p class="sm">No issues logged. Add rows to <code>data/releases/${esc(REL.slug)}/qa.js → issues</code> as they arise.</p>`}`;
     $("#qa").innerHTML = sectionHead(q.title, q.intro, c) + matrix + groupsHTML(q.groups) + issues + (q.note ? `<div class="note">${q.note}</div>` : "");
   }
   function renderRoyalties() {
     const r = D.royalties, p = D.post; const items = allItems({ royalties: r, post: p }); const c = counts(items);
-    const days = `<h4>Post-release campaign checkpoints</h4><div class="days">${p.days.map(dy => `<div class="day"><div class="dn">Day ${dy.day}</div><div class="dd">${fmt(dy.date)} · ${esc(dy.title)}</div><ul>${dy.tasks.map(t => `<li><b>${esc(t.t)}</b> <span class="faint">· ${esc(t.owner)}</span> ${st(t.status)}</li>`).join("")}</ul></div>`).join("")}</div>
+    const days = `<h4>Post-release campaign checkpoints</h4><div class="days">${p.days.map(dy => `<div class="day"><div class="dn">Day ${dy.day}</div><div class="dd">${fmt(dy.date)} · ${esc(dy.title)}</div><ul>${dy.tasks.map(t => { if (t.refs) { const rs = t.refs.map(id => INDEX[id]).filter(Boolean); const all = rs.length && rs.every(x => x.status === "complete"); const any = rs.some(x => x.status === "blocked"); return `<li><b>${esc(t.t)}</b> <span class="faint">· ${esc(t.owner)}</span> ${st(all ? "complete" : any ? "blocked" : "pending")}<div class="sm">tracked under: ${rs.map(x => `<a href="#${esc(x.section === "royalties_post" ? "royalties" : x.section)}">${esc(x.label)}</a>`).join(" · ")}</div></li>`; } return `<li><b>${esc(t.t)}</b> <span class="faint">· ${esc(t.owner)}</span> ${st(t.status)}</li>`; }).join("")}</ul></div>`).join("")}</div>
       <div class="note"><b>Momentum decision at Day 28.</b> ${p.decision}</div>`;
     const rows = `<h4>Royalty verification — is the release represented everywhere it earns?</h4>
       ${table(["System", "Rights", "What is verified", "Status", "Identifiers", "Ownership", "Matching / linkage", "Issues", "Follow-up"], r.rows.map(x => [`<b>${esc(x.system)}</b><div class="sm">${esc(x.owner || "")}</div>`, lens(x.lens), esc(x.what), st(x.status), blank(x.identifiers), blank(x.ownership), blank(x.linkage), blank(x.issues), x.followUp ? `<span class="due ${dueClass(x.followUp)}">${fmt(x.followUp)}</span>` : blank(null)]))}`;
