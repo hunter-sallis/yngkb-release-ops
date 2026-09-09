@@ -9,7 +9,7 @@ window.ReleaseOps.register("rockstar-lifestyle", "marketing", {
           detail: "Scheduled as a YouTube Premiere so the countdown page exists in advance. Description carries the artist's socials; no store links yet because the song is not live." },
         { id: "mk-clip1", date: "2026-09-12", task: "Short-form clip #1 — strongest visual moment", owner: "Editor", platform: "TikTok · Reels · Shorts", status: "pending", asset: "Clip 1 (9:16)", cta: "Full video on YouTube" },
         { id: "mk-presave-link", date: "2026-09-12", task: "HyperFollow smart link / pre-save page created", owner: "Keyman", platform: "DistroKid HyperFollow", status: "pending", asset: "HyperFollow page", cta: "—", deps: ["dist-upload", "dist-date"],
-          detail: "DistroKid's HyperFollow makes a landing page for the scheduled release; from here on every post can carry one link." }
+          detail: "DistroKid's HyperFollow makes a landing page for the release; whether it offers a pre-save for this scheduled release is confirmed when the page is created (not yet verified). From here on every post carries one link." }
       ]},
     { title: "Runway", from: "2026-09-14", to: "2026-09-27", intro: "Two posts a week minimum, alternating performance and story, each with a single CTA. The Spotify-follow CTA starts the day the profile is claimed, because follows are what Release Radar reaches.",
       tasks: [
