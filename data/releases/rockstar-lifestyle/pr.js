@@ -124,7 +124,7 @@ window.ReleaseOps.register("rockstar-lifestyle", "pr", {
         evidence: "Hunter confirmed the form was submitted on 9 September 2026 at 6:58pm ET. The firm publishes no email or phone; the site form is its only intake.",
         source: { label: "Vital Versatility — Contact", url: "https://www.vitalversatility.com/contact" } },
       { id: "pr-vv-fu1", label: "Day-after follow-up DM to Didier Morais (Instagram or LinkedIn)", status: "pending", owner: "Fusion 305", due: "2026-09-10", deps: ["pr-claim"],
-        detail: "Send on <a href=\"https://www.instagram.com/didiermorais/\" target=\"_blank\" rel=\"noopener\">Instagram @didiermorais</a> or <a href=\"https://www.linkedin.com/in/didiermorais/\" target=\"_blank\" rel=\"noopener\">LinkedIn</a> between <b>10am and 1pm Eastern</b>. Short on purpose: it adds one new fact (the video date) and does not repeat the pitch. The message text is under <i>Follow-up copy</i> below. If it slips to Friday, use the video-day variant instead." },
+        detail: "Send on <a href=\"https://www.instagram.com/didiermorais/\" target=\"_blank\" rel=\"noopener\">Instagram @didiermorais</a> or <a href=\"https://www.linkedin.com/in/didiermorais/\" target=\"_blank\" rel=\"noopener\">LinkedIn</a> between <b>10am and 1pm Eastern</b>. Short on purpose: it adds one new fact (the video date) and does not repeat the pitch. If it slips to Friday, use the video-day variant instead." },
       { id: "pr-vv-fu1-alt", label: "Video-day variant (only if the day-after DM was not sent)", status: "na", owner: "Fusion 305", due: "2026-09-11", deps: ["mk-premiere"],
         detail: "Swap the middle sentence for \"the video is out today\" and drop the private-link offer. Sending on video day gives him a reason to reply the same hour. Mark this N/A once the 10 September DM has gone out." },
       { id: "pr-vv-wait", label: "Quiet period — no further touch for a full week", status: "pending", owner: "Fusion 305", due: "2026-09-17", deps: ["pr-vv-fu1"],
@@ -156,13 +156,6 @@ window.ReleaseOps.register("rockstar-lifestyle", "pr", {
         source: { label: "Guerrera PR — About", url: "https://guerrerapr.com/about" } }
     ]}
   ],
-  followUp: {
-    title: "Follow-up copy — day after the Vital Versatility submission",
-    when: "Wednesday 10 September 2026, 10am–1pm Eastern, as a DM on <a href=\"https://www.instagram.com/didiermorais/\" target=\"_blank\" rel=\"noopener\">Instagram @didiermorais</a> or <a href=\"https://www.linkedin.com/in/didiermorais/\" target=\"_blank\" rel=\"noopener\">LinkedIn</a>. The firm publishes no email; the <a href=\"https://www.vitalversatility.com/contact\" target=\"_blank\" rel=\"noopener\">site form</a> was the first touch.",
-    text: "Didier, Hunter from Fusion 305 here. Sent a note through your site yesterday about YNG KB, Young Scooter's son, and his Oct 2 debut \"Rockstar Lifestyle.\" Wanted to make sure it landed and add one thing: the video drops this Friday, so there's a live asset to react to before we talk. Happy to send the private link ahead of it. Best reach is hunter@fusion305.com.",
-    variant: "If it goes out Friday morning instead, swap the middle sentence for \"the video is out today\" and drop the private-link offer. Sending on video day gives him a reason to reply the same hour.",
-    cadence: "Send it during his workday, 10am to 1pm Eastern. After this one, wait a full week before the next touch. Two messages in two days is a nudge. Three in a week is a problem."
-  },
   budgetNote: "<b>Pay-for-placement shops are a different product.</b> FAMED PR, Black Panda PR, Starlight PR and Lost Boy sell guaranteed blog placements to unsigned rappers. None of them sits in the Roc Nation or CMG orbit and none of them is tracked here. The bookingagentinfo listing that names Liaison Agency and Good Looks PR for Moneybagg Yo could not be confirmed anywhere else and was left off.",
   sources: [
     { label: "The Manager's Playbook — Music PR Explained (Didier Morais)", url: "https://www.youtube.com/watch?v=QG-oOqh7gj8" },
