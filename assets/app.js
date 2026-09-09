@@ -5,7 +5,7 @@
   const R = window.ReleaseOps;
   const SECTIONS = [
     ["overview", "Overview"], ["rights", "Rights"], ["distribution", "Distribution"], ["publishing", "Publishing"],
-    ["profiles", "Profiles"], ["marketing", "Marketing"], ["pitch", "Pitch"], ["qa", "Release QA"],
+    ["profiles", "Profiles"], ["marketing", "Marketing"], ["pr", "Press & PR"], ["pitch", "Pitch"], ["qa", "Release QA"],
     ["royalties", "Royalties"], ["analytics", "Analytics"]
   ];
   const STATUS_LABEL = { complete: "Completed", pending: "Pending", blocked: "Blocked", unknown: "Unknown", na: "N/A" };
@@ -31,6 +31,7 @@
     grab(d.publishing && d.publishing.groups, "publishing");
     grab(d.profiles && d.profiles.groups, "profiles");
     (d.marketing && d.marketing.phases || []).forEach(p => (p.tasks || []).forEach(t => out.push({ id: t.id, label: t.task, status: t.status, owner: t.owner, due: t.date, deps: t.deps, section: "marketing", group: p.title })));
+    grab(d.pr && d.pr.groups, "pr");
     grab(d.pitch && d.pitch.groups, "pitch");
     grab(d.qa && d.qa.groups, "qa");
     (d.post && d.post.days || []).forEach(p => (p.tasks || []).forEach(t => { if (t.refs) return; out.push({ id: t.id, label: t.t, status: t.status, owner: t.owner, due: p.date, section: "royalties_post", group: p.title }); }));
@@ -150,6 +151,16 @@
     const rules = `<h4>Spotify's rules, as published</h4><ul class="sm" style="margin:0;padding-left:18px">${p.rules.map(r => `<li style="margin-bottom:5px">${r}</li>`).join("")}</ul>`;
     $("#pitch").innerHTML = sectionHead(p.title, p.intro, c) + tracker + groupsHTML(p.groups) + fields + rules + (p.note ? `<div class="note warn">${p.note}</div>` : "");
   }
+  function renderPR() {
+    const p = D.pr; const items = allItems({ pr: p }); const c = counts(items);
+    const rules = `<h4>Outreach rules</h4><ul class="sm" style="margin:0;padding-left:18px">${p.rules.map(r => `<li style="margin-bottom:5px">${r}</li>`).join("")}</ul>`;
+    const tracker = `<h4>Firm tracker — ranked by fit</h4><p class="sm" style="margin:0 0 6px">Lead = the firm already approached. Tier 1 = inside the Future / Roc Nation / CMG orbit. Tier 2 = deepest street-rap rosters and the realistic doors for a debut single. Tier 3 = weaker genre fit.</p>
+      ${table(["Firm", "Tier", "Why it matches", "Channel", "Status", "Last touch", "Next touch"], p.tracker.map(f => [`<b>${esc(f.firm)}</b><div class="sm">${esc(f.lead)}</div>`, esc(f.tier), `<span class="sm">${esc(f.fit)}</span>`, `<span class="sm">${esc(f.channel)}</span>`, st(f.status), f.last ? `<span class="due ${dueClass(f.last)}">${fmt(f.last)}</span>${f.lastNote ? `<div class="sm">${esc(f.lastNote)}</div>` : ""}` : blank(null), f.next ? `<span class="due ${dueClass(f.next)}">${fmt(f.next)}</span>${f.nextNote ? `<div class="sm">${esc(f.nextNote)}</div>` : ""}` : (f.nextNote ? `<span class="sm">${esc(f.nextNote)}</span>` : blank(null))]))}`;
+    const fu = p.followUp ? `<h4>${esc(p.followUp.title)}</h4><p class="sm" style="margin:0"><b>When:</b> ${esc(p.followUp.when)}</p><div class="pitchtext">${esc(p.followUp.text)}</div>
+      <div class="kv"><dt>Friday variant</dt><dd>${esc(p.followUp.variant)}</dd><dt>Cadence</dt><dd>${esc(p.followUp.cadence)}</dd></div>` : "";
+    const srcs = p.sources && p.sources.length ? `<h4>Sources</h4><ul class="sm" style="margin:0;padding-left:18px">${p.sources.map(s => `<li style="margin-bottom:4px">${link(s)}</li>`).join("")}</ul>` : "";
+    $("#pr").innerHTML = sectionHead(p.title, p.intro, c) + rules + tracker + groupsHTML(p.groups) + fu + (p.budgetNote ? `<div class="note warn">${p.budgetNote}</div>` : "") + srcs;
+  }
   function renderQA() {
     const q = D.qa; const items = allItems({ qa: q }); const c = counts(items);
     const matrix = `<h4>Release-day verification matrix</h4><p class="sm" style="margin:0 0 6px">One cell per platform and check. Grey = not yet checked (release day has not happened). Fill from the actual store listing on ${fmt(D.meta.releaseDate)}.</p>
@@ -207,7 +218,7 @@
     $("#buildBadge").textContent = `Internal · ${D.meta.asOf} · v${D.meta.version}`;
     buildNav(); renderOverview();
     renderChecklist("rights", D.rights); renderDistribution(); renderChecklist("publishing", D.publishing); renderChecklist("profiles", D.profiles);
-    renderMarketing(); renderPitch(); renderQA(); renderRoyalties(); renderAnalytics();
+    renderMarketing(); renderPR(); renderPitch(); renderQA(); renderRoyalties(); renderAnalytics();
     go(location.hash.slice(1) || "overview", false);
     document.title = `${D.meta.artist} — ${D.meta.title} · Release Operations`;
   }

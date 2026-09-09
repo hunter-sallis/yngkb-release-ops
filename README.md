@@ -1,8 +1,8 @@
 # YNG KB — Release Operations
 
-An internal **Artist Release Operating System** for YNG KB, operated by Keyman. It turns a release into ten
+An internal **Artist Release Operating System** for YNG KB, operated by Keyman. It turns a release into eleven
 operational areas — rights clearance, distribution, publishing and royalty setup, artist profiles, marketing runway,
-editorial pitch, release-day QA, post-release campaign, royalty verification and analytics — each with dated,
+press & PR outreach, editorial pitch, release-day QA, post-release campaign, royalty verification and analytics — each with dated,
 owned, dependency-aware checkpoints and an honest status.
 
 **Live:** https://hunter-sallis.github.io/yngkb-release-ops/
@@ -37,6 +37,7 @@ data/releases/<slug>/
   publishing.js                  composition (PRO, publisher, MLC, HFA) and master (SoundExchange, neighbouring rights)
   profiles.js                    Spotify / Apple / YouTube / Amazon / TIDAL profile claims with dependencies
   marketing.js                   dated runway: task, owner, platform, status, asset, CTA
+  pr.js                          publicist outreach: firm tracker (fit, channel, last/next touch), checkpoints, follow-up copy
   pitch.js                       Spotify editorial pitch tracker, form fields, final text, Spotify's rules
   qa.js                          release-day matrix (platform × check), checklist, issue log
   post.js                        Day 1 / 3 / 7 / 14 / 28 checkpoints (duplicates reference canonical items via `refs`)
@@ -71,7 +72,7 @@ Marketing tasks use `date / task / owner / platform / status / asset / cta`. Pos
 2. Change the item's `status`, and **add an `evidence` line** when marking anything `complete`
    (what was seen, where, on what date).
 3. Fill identifiers into `distribution.js → record` as they arrive (ISRC, UPC, URIs, store IDs).
-4. Record the pitch text and date in `pitch.js`; log release-day problems in `qa.js → issues`;
+4. Log every publicist touch in `pr.js` (tracker `last` / `next` plus the checkpoint's `evidence`); record the pitch text and date in `pitch.js`; log release-day problems in `qa.js → issues`;
    enter metric values in `analytics.js` on or after each window date.
 5. Bump `meta.js → version` and `asOf`, commit, push. GitHub Pages redeploys in about a minute
    (browsers cache for ten minutes — hard refresh to see the new version).
