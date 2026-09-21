@@ -1,6 +1,6 @@
 window.ReleaseOps.register("rockstar-lifestyle", "pr", {
   title: "Press & PR outreach",
-  intro: "Publicist outreach for the launch window, run by Hunter on behalf of Fusion 305 (the label). Firms are ranked by how close they sit to the story: hip-hop, culture, and the Roc Nation / CMG / Future orbit. A firm is <b>Completed</b> only when a reply has been logged; a submission is one checkpoint, not an engagement. Contact channels are the ones each firm publishes itself, read 9 September 2026.",
+  intro: "Publicist outreach for the launch window, run by Hunter. Firms are ranked by how close they sit to the story: hip-hop, culture, and the Roc Nation / CMG / Future orbit. A firm is <b>Completed</b> only when a reply has been logged; a submission is one checkpoint, not an engagement. Contact channels are the ones each firm publishes itself, read 9 September 2026.",
   tracker: [
     { firm: "Vital Versatility", site: "https://www.vitalversatility.com", lead: "Didier Morais · New York", tier: "Lead", fit: "Megan Thee Stallion, Fat Joe, Yo Gotti / CMG, Roc Nation, PUMA. Hip-hop, culture and crisis PR; the CMG and Roc Nation orbit the story lands in.",
       links: [
@@ -69,34 +69,34 @@ window.ReleaseOps.register("rockstar-lifestyle", "pr", {
   ],
   groups: [
     { title: "Identity claim", items: [
-      { id: "pr-claim", label: "Artist's family connection confirmed and worded the same way in every message", status: "unknown", owner: "Fusion 305", due: "2026-09-10",
+      { id: "pr-claim", label: "Artist's family connection confirmed and worded the same way in every message", status: "unknown", owner: "Keyman", due: "2026-09-10",
         detail: "The 9 September site form to Vital Versatility describes YNG KB as <b>Future's nephew</b>. The drafted 10 September DM describes him as <b>Young Scooter's son</b>. Both may be true, but a publicist at this level will check the claim before pitching anyone, and two different descriptors in two days reads as a story that has not been settled. Pick one wording, confirm it with the artist, and use it everywhere." }
     ]},
     { title: "Vital Versatility", items: [
-      { id: "pr-vv-submit", label: "Inquiry submitted through vitalversatility.com/contact", status: "complete", owner: "Fusion 305", due: "2026-09-09",
-        detail: "Subject <i>Potential Client/Services Inquiry</i>, from hunter@fusion305.com. Asked for a 20-minute intro call on a launch-window engagement: narrative framing around the family connection without leaning on it, first-release press and digital coverage, and a plan for the weeks after the video. Referenced his Manager's Playbook segments on when an artist is ready for PR and on supporting emerging artists.",
+      { id: "pr-vv-submit", label: "Inquiry submitted through vitalversatility.com/contact", status: "complete", owner: "Keyman", due: "2026-09-09",
+        detail: "Subject <i>Potential Client/Services Inquiry</i>. Asked for a 20-minute intro call on a launch-window engagement: narrative framing around the family connection without leaning on it, first-release press and digital coverage, and a plan for the weeks after the video. Referenced his Manager's Playbook segments on when an artist is ready for PR and on supporting emerging artists.",
         evidence: "Hunter confirmed the form was submitted on 9 September 2026 at 6:58pm ET. The firm publishes no email or phone; the site form is its only intake.",
         source: { label: "Vital Versatility — Contact", url: "https://www.vitalversatility.com/contact" } },
-      { id: "pr-vv-fu1", label: "Day-after follow-up DM to Didier Morais (Instagram or LinkedIn)", status: "pending", owner: "Fusion 305", due: "2026-09-10", deps: ["pr-claim"],
+      { id: "pr-vv-fu1", label: "Day-after follow-up DM to Didier Morais (Instagram or LinkedIn)", status: "pending", owner: "Keyman", due: "2026-09-10", deps: ["pr-claim"],
         detail: "Send on <a href=\"https://www.instagram.com/didiermorais/\" target=\"_blank\" rel=\"noopener\">Instagram @didiermorais</a> or <a href=\"https://www.linkedin.com/in/didiermorais/\" target=\"_blank\" rel=\"noopener\">LinkedIn</a> between <b>10am and 1pm Eastern</b>. Short on purpose: it adds one new fact (the video date) and does not repeat the pitch. If it slips to Friday, use the video-day variant instead." },
-      { id: "pr-vv-fu1-alt", label: "Video-day variant (only if the day-after DM was not sent)", status: "na", owner: "Fusion 305", due: "2026-09-11", deps: ["mk-premiere"],
+      { id: "pr-vv-fu1-alt", label: "Video-day variant (only if the day-after DM was not sent)", status: "na", owner: "Keyman", due: "2026-09-11", deps: ["mk-premiere"],
         detail: "Swap the middle sentence for \"the video is out today\" and drop the private-link offer. Sending on video day gives him a reason to reply the same hour. Mark this N/A once the 10 September DM has gone out." },
-      { id: "pr-vv-wait", label: "Quiet period — no further touch for a full week", status: "pending", owner: "Fusion 305", due: "2026-09-17", deps: ["pr-vv-fu1"],
+      { id: "pr-vv-wait", label: "Quiet period — no further touch for a full week", status: "pending", owner: "Keyman", due: "2026-09-17", deps: ["pr-vv-fu1"],
         detail: "Earliest date for a third touch is 17 September, and only if there has been no reply. A third message inside the first week is a problem, not a nudge. If he replies, this item becomes N/A and the thread moves to a call." },
-      { id: "pr-vv-reply", label: "Reply received and intro call booked", status: "pending", owner: "Fusion 305", due: "2026-09-18", deps: ["pr-vv-submit"],
+      { id: "pr-vv-reply", label: "Reply received and intro call booked", status: "pending", owner: "Keyman", due: "2026-09-18", deps: ["pr-vv-submit"],
         detail: "Log the date, the channel he replied on, and what he asked for (record, video treatment, rollout dates). Send the private video link ahead of the call." }
     ]},
     { title: "Other firms — in order of fit", items: [
-      { id: "pr-audible", label: "Audible Treats release submission", status: "pending", owner: "Fusion 305", due: "2026-09-14", deps: ["pr-claim"],
+      { id: "pr-audible", label: "Audible Treats release submission", status: "pending", owner: "Keyman", due: "2026-09-14", deps: ["pr-claim"],
         detail: "Open form: artist name, social links, upcoming release details, email. Strongest realistic fit for a first single because the roster is built on developing street-rap artists and label deals (OTF, EMPIRE, Alamo, PRE). Do not wait on Vital Versatility to send this; a second conversation is leverage, not a conflict.",
         source: { label: "Audible Treats — Service inquiries", url: "https://audibletreats.com/service-inquiries/" } },
-      { id: "pr-biz3", label: "Biz 3 email to Kathryn Frazier (cc Dana)", status: "pending", owner: "Fusion 305", due: "2026-09-14", deps: ["pr-claim"],
+      { id: "pr-biz3", label: "Biz 3 email to Kathryn Frazier (cc Dana)", status: "pending", owner: "Keyman", due: "2026-09-14", deps: ["pr-claim"],
         detail: "Direct email, not a form. Same three-paragraph structure as the Vital Versatility note; drop the Manager's Playbook reference and lead with the video and the 2 October date.",
         source: { label: "Biz 3 — About (team emails)", url: "https://www.biz3.net/about" } },
-      { id: "pr-fyi", label: "FYI Brand Group contact form", status: "pending", owner: "Fusion 305", due: "2026-09-18", deps: ["pr-claim"],
-        detail: "Brand-scale firm (21 Savage, Travis Scott, DJ Khaled). Pitch Fusion 305 as a label with a first release, not the single on its own. The site's contact page could not be retrieved on 9 September; check it resolves before relying on the form.",
+      { id: "pr-fyi", label: "FYI Brand Group contact form", status: "pending", owner: "Keyman", due: "2026-09-18", deps: ["pr-claim"],
+        detail: "Brand-scale firm (21 Savage, Travis Scott, DJ Khaled). Pitch the artist and the first-release story, not the single on its own. The site's contact page could not be retrieved on 9 September; check it resolves before relying on the form.",
         source: { label: "FYI Brand Group", url: "https://www.fyibrandgroup.com/" } },
-      { id: "pr-chamber", label: "The Chamber Group contact form (180 characters)", status: "pending", owner: "Fusion 305", due: "2026-09-18", deps: ["pr-claim"],
+      { id: "pr-chamber", label: "The Chamber Group contact form (180 characters)", status: "pending", owner: "Keyman", due: "2026-09-18", deps: ["pr-claim"],
         detail: "The message field is capped at 180 characters, so the form is a door-knock, not a pitch: name the artist, the date and the ask for a call, and leave the email address.",
         source: { label: "The Chamber Group — Contact", url: "https://thechambergroup.com/contact/" } }
     ]}
